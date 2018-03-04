@@ -1,0 +1,16 @@
+.body {
+    background-color: rgb(0, 0, 0);
+}
+
+.elements {
+    background-color: dimgray;
+    color: white;
+}
+
+.panel {
+    background-color: dimgray;
+}
+
+.jumbotron {
+    background-color: rgb(78, 77, 77);
+}
