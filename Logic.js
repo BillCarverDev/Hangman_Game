@@ -1,6 +1,5 @@
-//  GLOBAL VARIABLES
-// =========================================================
-// Arrays and Variables for holding data
+//VARIABLES
+
 
 var wordOptions = ["lottie", "lizzie", "hannah", "julia"];
 var selectedWord = "";
@@ -8,15 +7,13 @@ var letterinWord = [];
 var numBlanks = 0;
 var blanksAndSuccesses = [];
 var wrongLetters = [];
-
-// Game Counters
 var winCount = 0;
 var lossCount = 0;
 var guessesLeft = 9;
 
-// FUNCTIONS (Reusable code that will call upon when needed)
-// =========================================================
+// FUNCTIONS 
 function startGame() {
+    document.getElementById("wrongGuesses").innerHTML = [];
     selectedWord = wordOptions[Math.floor(Math.random() * wordOptions.length)];
     letterinWord = selectedWord.split("");
     numBlanks = letterinWord.length;
@@ -28,7 +25,7 @@ function startGame() {
 
     //Push the blanks and successes to first panel
     for (var i=0; i<numBlanks; i++) {
-        blanksAndSuccesses.push("_");
+        blanksAndSuccesses.push("__");
     }
 
     //Change HTML to reflect round condidtions
@@ -90,12 +87,17 @@ function roundComplete() {
     //check if user won
     if (letterinWord.toString() == blanksAndSuccesses.toString()) {
         winCount++;
-        alert("YOU WON");
+        
+        setTimeout(function() { alert("YOU WIN! You guessed " + selectedWord); }, 50);
+        // alert("YOU WON");
+
 
         //Update win counter in HTML
         document.getElementById("winCounter").innerHTML = winCount;
 
-        startGame();
+        //Delay startGame function so selectedWord alerts correctly
+        setTimeout(function() { startGame(); }, 200);
+        // startGame();
     }
     // check if user lost
 
@@ -116,19 +118,51 @@ function roundComplete() {
 
 
 // MAIN PROCESS
-// =========================================================
 
-//Initiates the code the first time
 startGame();
 
-//Register keyclicks
+// keyclicks
 document.onkeyup = function(event) {
     var letterGuessed = String.fromCharCode(event.keyCode).toLowerCase();
     checkLetters(letterGuessed);
     roundComplete();
 
-//Testing debugging
-console.log(letterGuessed);
+
+// Testing code for buttons:
+// function myfunction() {
+    // document.getElementById ("idZ").value = "BMW";  //great success
+    // document.getElementById ("idZ").innerHTML = blanksAndSuccesses.join(" ");
+    //Perhaps try setting the key value to a CharCode
+
+
+
+
+
+
+
+// Scratched code for buttons
+
+// document.getElementById("A").onclick = function(event) {
+//     var letterGuessed = String.fromCharCode(event.keycode);
+//     console.log(letterGuessed);
+//     checkLetters(letterGuessed);
+//     roundComplete();
+
+// document.getElementById("A").innerHTML = blanksAndSuccesses.join(" "); {
+//     function(event) {
+//         var letterGuessed = String.fromCharCode(event.keyCode);
+//         checkLetters(letterGuessed);
+//         roundComplete();
+// } 
+// {clickedA()};
+// function clickedA() {
+//     document.getElementById("wordToGuess").innerHTML = blanksAndSuccesses.join(" ");
+
+
+
+//Debug
+// console.log(event.keycode);
+// console.log(letterGuessed);
 
 
 }
